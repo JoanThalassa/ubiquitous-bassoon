@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    document.querySelector("#Th_Dong_y").onclick=()=>{
+        let noidung = CKEDITOR.instances.Th_Noi_dung.getData();
+        let subject= document.querySelector("#Th_Tieu_de").value;
+        let hoten=document.querySelector("#Th_Ho_ten").value;
+        let email=document.querySelector("#Th_Email").value;
+        
+        let html=`<h4>Họ tên: ${hoten}</h4>Email: ${email}<br /><p><b>Nội dung</b></p>`;
+        html+=`${noidung}`
+        
+        let thongTin={
+            tieude:subject,
+            noidung:html}}
+            apiLienhe(thongTin).then(result=>{
+                alert(`Cám ơn bạn. Chúng tôi sẽ trả lời sớm nhất cho bạn`)
+                console.log(result)
+                window.location='.'
+            })
+        
+    </script>
+</body>
+</html>

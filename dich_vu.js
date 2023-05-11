@@ -70,3 +70,23 @@ dich_vu.listen(port,()=>{
     console.log(`Service Runing http://localhost:${port}`)
 })
 
+const sendMail=require("./sendMail");
+
+else if(url == "/Lienhe"){
+            req.on("end",function(){
+                let thongTin=JSON.parse(Noi_dung_Nhan);
+                let Ket_qua = { "Noi_dung": true };
+                let from=`ltv.javascript@gmail.com`;
+                let to=`ltv.javascript@gmail.com`;
+                let subject=thongTin.tieude;
+                let body=thongTin.noidung
+                sendMail.Goi_Thu_Lien_he(from,to,subject,body).then(result=>{
+                    console.log(result)
+                    res.end(JSON.stringify(Ket_qua));
+                }).catch(err=>{
+                    console.log(err);
+                    Ket_qua.Noi_dung=false;
+                    res.end(JSON.stringify(Ket_qua));
+                })
+            })
+        }
